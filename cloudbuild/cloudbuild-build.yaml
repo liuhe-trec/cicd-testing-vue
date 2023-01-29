@@ -1,0 +1,15 @@
+steps:
+  # Install dependencies
+  - name: node:$_NODE_VERSION
+    entrpoint: npm
+    args: ['install']
+  # Build Project
+  - name: node:$_NODE_VERSION
+    entrpoint: npm
+    args: ['build']
+  # Docker Build
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['build','-t','asia.gcr.io/$PROJECT_ID/cicd-testing-vue:$_EVENT_NAME','-f','$_DOCKER_FILE_PATH','.','--build-arg','envType=$_ENV']
+  # Push docker to gce
+  - name: 'gcr.io/cloud-builders/docker'
+    args: ['push', 'asia.gcr.io/$PROJECT_ID/cicd-testing-vue:$_EVENT_NAME']
