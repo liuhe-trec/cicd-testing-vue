@@ -6,7 +6,7 @@ steps:
   # Build Project
   - name: node:$_NODE_VERSION
     entrypoint: npm
-    args: ['build']
+    args: ['run', 'build']
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
     args: ['build','-t','asia.gcr.io/$PROJECT_ID/cicd-testing-vue:$_EVENT_NAME','-f','$_DOCKER_FILE_PATH','.','--build-arg','envType=$_ENV']
