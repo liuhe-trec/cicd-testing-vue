@@ -1,11 +1,11 @@
 steps:
   # Install dependencies
   - name: node:$_NODE_VERSION
-    entrpoint: npm
+    entrypoint: npm
     args: ['install']
   # Build Project
   - name: node:$_NODE_VERSION
-    entrpoint: npm
+    entrypoint: npm
     args: ['build']
   # Docker Build
   - name: 'gcr.io/cloud-builders/docker'
