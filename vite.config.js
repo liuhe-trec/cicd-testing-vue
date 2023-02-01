@@ -5,10 +5,19 @@ import vue from '@vitejs/plugin-vue'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [vue()],
+  base: "./",
+  plugins: [
+    vue(),
+    styleImport({
+      resolves: [VantResolve()],
+    })
+  ],
   resolve: {
     alias: {
-      '@': fileURLToPath(new URL('./src', import.meta.url))
+      '@': path.resolve(__dirname, "src"),
+      'view': path.resolve(__dirname, "src/view"),
+      'components': path.resolve(__dirname, "src/components"),
+      'assets': path.resolve(__dirname, "src/assets"),
     }
   },
   server:{
